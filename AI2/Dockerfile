@@ -34,5 +34,3 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN python3.12 get-pip.py
 
 CMD ["/stage/entrypoint.sh"]
-
-ENTRYPOINT ["top", "-b"]
