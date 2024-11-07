@@ -1,8 +1,8 @@
 import torch
 import torch.optim as optim
-from torch.nn.parallel import DistributedDataParallel as DDP
+from torch.nn.parallel import DistributedDataParallel as DDP  # noqa
 
-from setup_processing_groups import setup, cleanup
+from pytorchddp.setup_processing_groups import setup, cleanup
 
 class ToyMpModel(torch.nn.Module):
     def __init__(self, dev0, dev1):

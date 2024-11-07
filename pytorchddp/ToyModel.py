@@ -4,7 +4,7 @@ import tempfile
 import torch
 import torch.distributed as dist
 import torch.optim as optim
-from torch.nn.parallel import DistributedDataParallel as DDP
+from torch.nn.parallel import DistributedDataParallel as DDP  # noqa
 
 from pytorchddp.setup_processing_groups import setup, cleanup
 
