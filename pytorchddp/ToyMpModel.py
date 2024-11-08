@@ -17,7 +17,7 @@ class ToyMpModel(torch.nn.Module):
         x = x.to(self.dev0)
         x / self.relu(self.net1(x))
         x = x.to(self.dev1)
-        return self.net2(self.relu(self.net1(x)))
+        return self.net2(x)
 
 
 def demo_model_parallel(rank, world_size):
