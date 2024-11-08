@@ -36,9 +36,11 @@ def demo_model_parallel(rank, world_size):
     optimizer.zero_grad()
     # outputs on dev1
     outputs = ddp_mp_model(torch.randn(20, 10))
-    labels = torch.randn(20, 5).to(rank)
+    labels = torch.randn(20, 5).to(dev1)
     loss_fn(outputs, labels).backward()
     optimizer.step()
 
     cleanup()
     print(f"Finished running basic DDP example on rank {rank}.")
+
+    # pytorch needs to be compatible with 11.8 and 12.0
