@@ -1,5 +1,5 @@
 version: v2
-budget: ai2/reviz # we were authorized to use this budget but it may change
+budget: ai2/reviz # we were authorized to use this budget, but it may change
 description: AI1/DDP Demo # user defined
 tasks:
   - name: AI1.DDP
