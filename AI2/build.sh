@@ -6,4 +6,5 @@
 rm -rf ./artifacts/*
 cp entrypoint.sh ./artifacts
 
-beaker image create --name pytorch_dpp_1 "$(docker build -q --file Dockerfile ./artifacts --platform linux/amd64)"
+docker build -t octo-test-pub --file Dockerfile --platform linux/amd64 .
+

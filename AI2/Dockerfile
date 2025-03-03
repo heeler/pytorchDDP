@@ -1,4 +1,4 @@
-FROM pytorch/pytorch:2.2.2-cuda11.8-cudnn8-runtime
+FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
 
 # Set environment variables to avoid prompts during installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -20,9 +20,10 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     python3.12 \
     python3.12-dev \
-    python3.12-distutils \
     python3.12-venv \
     && rm -rf /var/lib/apt/lists/*
+
+# python3.12-distutils was in the command above but is now removed after deprication
 
 # Set the working directory in the container
 WORKDIR /stage/
