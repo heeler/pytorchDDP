@@ -23,9 +23,13 @@ def demo_basic(rank, world_size):
     print(f"Running basic DDP example on rank {rank}.")
     setup(rank, world_size)
 
+    rank = dist.get_rank()
+    print(f"Running rank {rank}.")
+    device = rank % torch.cuda.device_count()
+
     # create model and move it to GPU with id rank
-    model = ToyModel().to(rank)
-    ddp_model = DDP(model, device_ids=[rank])
+    model = ToyModel().to(device)
+    ddp_model = DDP(model, device_ids=[device])
 
     loss_fn = torch.nn.MSELoss()
     optimizer = optim.SGD(ddp_model.parameters(), lr=0.001)
@@ -43,8 +47,12 @@ def demo_checkpoint(rank, world_size):
     print(f"Running DDP checkpoint example on rank {rank}.")
     setup(rank, world_size)
 
-    model = ToyModel().to(rank)
-    ddp_model = DDP(model, device_ids=[rank])
+    rank = dist.get_rank()
+    print(f"Running rank {rank}.")
+    device = rank % torch.cuda.device_count()
+
+    model = ToyModel().to(device)
+    ddp_model = DDP(model, device_ids=[device])
 
 
     CHECKPOINT_PATH = tempfile.gettempdir() + "/model.checkpoint"
