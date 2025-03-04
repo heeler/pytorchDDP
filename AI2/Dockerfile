@@ -17,11 +17,21 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     git \
     curl \
+    cmake \
     python3-dev \
     python3.12 \
     python3.12-dev \
     python3.12-venv \
+    libhwloc-dev \
     && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /opt/amazon/efa \
+    && wget https://efa-installer.amazonaws.com/aws-efa-installer-latest.tar.gz -O /tmp/aws-efa-installer-latest.tar.gz \
+    && tar -xf /tmp/aws-efa-installer-latest.tar.gz -C /tmp \
+    && cd /tmp/aws-efa-installer \
+    # Run the installer in container-only mode (no kernel modules)
+    && ./efa_installer.sh -y --skip-kmod \
+    && rm -rf /tmp/aws-efa-installer*
 
 # python3.12-distutils was in the command above but is now removed after deprication
 
